@@ -1,0 +1,46 @@
+import com.github.spotbugs.SpotBugsTask
+
+plugins {
+    id 'java-library'
+    id 'com.diffplug.gradle.spotless' version '3.24.0'
+    id 'com.github.spotbugs' version '2.0.0'
+    id 'idea'
+}
+
+repositories {
+    mavenCentral()
+}
+
+tasks.withType(SpotBugsTask) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}
+
+spotless {
+    java {
+        googleJavaFormat('1.7')
+    }
+}
+
+idea {
+    module {
+        outputDir file('build/classes/main')
+        testOutputDir file('build/classes/test')
+    }
+}
+
+ext {
+    lombokVersion = '1.18.8'
+}
+
+dependencies {
+    // lombok
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+
+    // required for newer JDKs
+    api 'org.glassfish.jaxb:jaxb-runtime:2.3.0'
+    implementation 'javax.activation:activation:1.1.1'
+}
