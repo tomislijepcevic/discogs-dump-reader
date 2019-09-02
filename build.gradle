@@ -37,8 +37,8 @@ ext {
 
 dependencies {
     // lombok
-    compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
-    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+    compileOnly "org.projectlombok:lombok:$lombokVersion"
+    annotationProcessor "org.projectlombok:lombok:$lombokVersion"
 
     // required for newer JDKs
     api 'org.glassfish.jaxb:jaxb-runtime:2.3.0'
