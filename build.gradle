@@ -5,6 +5,7 @@ plugins {
     id 'com.diffplug.gradle.spotless' version '3.24.0'
     id 'com.github.spotbugs' version '2.0.0'
     id 'idea'
+    id 'maven-publish'
 }
 
 repositories {
@@ -43,4 +44,17 @@ dependencies {
     // required for newer JDKs
     api 'org.glassfish.jaxb:jaxb-runtime:2.3.0'
     implementation 'javax.activation:activation:1.1.1'
+}
+
+group = 'tslic.discogs'
+version = '1.0'
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
 }
